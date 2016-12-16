@@ -1,2 +1,2 @@
 # rxnetwork
-A network layer framework for using retrofit &amp; RxEventBus
+A network layer framework using retrofit &amp; RxEventBus
