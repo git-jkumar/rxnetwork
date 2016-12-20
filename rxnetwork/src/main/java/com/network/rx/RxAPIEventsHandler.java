@@ -9,13 +9,13 @@ import rx.functions.Action1;
 public abstract class RxAPIEventsHandler<T> implements Action1<T> {
 
     public void call(T t){
-        if(t instanceof ErrorMessage)
-            onError((ErrorMessage)t);
+        if(t instanceof RetroError)
+            onError((RetroError)t);
         else
             onSuccess(t);
     }
 
-    public abstract void onError(ErrorMessage errorMessage);
+    public abstract void onError(RetroError errorModel);
 
     public abstract void onSuccess(T t);
 }

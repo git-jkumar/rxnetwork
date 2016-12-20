@@ -1,15 +1,12 @@
 package com.network.rx;
 
+
 import rx.Subscription;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.subjects.PublishSubject;
 import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
-
-/**
- * Created by Salil Kaul on 3/11/16.
- */
 
 public class
 RXEventBus {
