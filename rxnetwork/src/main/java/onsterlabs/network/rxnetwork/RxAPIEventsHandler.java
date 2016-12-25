@@ -1,4 +1,4 @@
-package com.network.rx;
+package onsterlabs.network.rxnetwork;
 
 import rx.functions.Action1;
 

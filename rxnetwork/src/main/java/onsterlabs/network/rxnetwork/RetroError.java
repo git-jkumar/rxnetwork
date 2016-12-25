@@ -1,4 +1,6 @@
-package com.network.rx;
+package onsterlabs.network.rxnetwork;
+
+import onsterlabs.network.RetrofitException;
 
 public class RetroError {
 

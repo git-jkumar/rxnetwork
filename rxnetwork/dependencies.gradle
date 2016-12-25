@@ -1,0 +1,29 @@
+ext {
+    bintrayRepo = 'network'
+    bintrayName = 'rxnetwork'
+
+    publishedGroupId = 'onsterlabs.network'
+    libraryName = 'rxnetwork'
+    artifact = 'rxnetwork'
+
+    libraryDescription = 'A network layer framework using retrofit & RxEventBus for Android Projects to make developing projects easier using MVP/MVVM design pattern'
+
+    siteUrl = 'https://github.com/git-jkumar/rxnetwork'
+    gitUrl = 'https://github.com/git-jkumar/rxnetwork.git'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'onsterlabs-jkumar'
+    developerName = 'Jitendra Kumar'
+    developerEmail = 'inbox.jkumar@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+    retrofitVersion = '2.0.0'
+    dependencies = [
+            retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion",
+    ]
+}

@@ -1,4 +1,6 @@
-package com.network.rx;
+package onsterlabs.network.rxnetwork;
+
+import onsterlabs.network.NetworkClient;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package com.network.rx;
+package onsterlabs.network;
 
 import java.io.IOException;
 

@@ -1,26 +1,29 @@
 apply plugin: 'java'
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+apply from: 'dependencies.gradle'
 
 buildscript {
     repositories {
         jcenter()
+
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+//        classpath 'com.github.dcendents:android-maven-plugin:1.2'
     }
 }
-
-allprojects {
-    repositories {
-        jcenter()
-    }
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.squareup.retrofit2:retrofit:2.0.0"
-    compile "com.squareup.retrofit2:converter-gson:2.0.0"
-    compile "com.squareup.retrofit2:adapter-rxjava:2.0.0"
+    Map<String, String> dependencies = rootProject.ext.dependencies
+    compile dependencies.retrofit
+    compile dependencies.retrofitConverterGson
+    compile dependencies.retrofitAdapterRxJava
     compile('com.squareup.okhttp3:logging-interceptor:3.4.1') {
         exclude module: 'okhttp3'
     }
-
 }
+
+//apply from: 'installv1.gradle'
+apply from: 'bintrayv1.gradle'
