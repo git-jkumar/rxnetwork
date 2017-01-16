@@ -11,7 +11,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.HttpException;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * Created by ttnd on 20/10/16.
@@ -50,12 +49,7 @@ public class RxErrorHandlingCallAdapterFactory extends CallAdapter.Factory {
         @SuppressWarnings("unchecked")
         @Override
         public <R> Observable<?> adapt(Call<R> call) {
-            return ((Observable) wrapped.adapt(call)).onErrorResumeNext(new Func1<Throwable, Observable>() {
-                @Override
-                public Observable call(Throwable throwable) {
-                    return Observable.error(asRetrofitException(throwable));
-                }
-            });
+            return ((Observable) wrapped.adapt(call));
         }
 
         private RetrofitException asRetrofitException(Throwable throwable) {

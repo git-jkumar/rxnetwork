@@ -1,9 +1,9 @@
 package onsterlabs.network.rxnetwork;
 
-import onsterlabs.network.NetworkClient;
-
 import java.util.HashMap;
 
+import onsterlabs.network.NetworkClient;
+import onsterlabs.network.TokenAuthenticator;
 import retrofit2.Retrofit;
 
 
@@ -11,6 +11,7 @@ public class NetworkServiceFactory {
 
     private static NetworkServiceFactory sDataService;
     private Retrofit mRestClient;
+    private TokenAuthenticator mTokenAuthenticator;
 
     private NetworkServiceFactory() {
     }

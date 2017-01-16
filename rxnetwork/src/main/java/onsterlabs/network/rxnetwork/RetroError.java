@@ -1,19 +1,22 @@
 package onsterlabs.network.rxnetwork;
 
-import onsterlabs.network.RetrofitException;
+import java.io.IOException;
 
 public class RetroError {
 
     private final int httpErrorCode;
-    private final String errorMessage;
-    private final RetrofitException.Kind kind;
+    private String errorMessage;
+    private final Kind kind;
 
-    RetroError(RetrofitException.Kind kind, String errorMessage, int httpErrorCode) {
+    RetroError(Kind kind, String errorMessage, int httpErrorCode) {
         this.httpErrorCode = httpErrorCode;
         this.kind = kind;
         this.errorMessage = errorMessage;
     }
 
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     public int getHttpErrorCode() {
         return httpErrorCode;
@@ -23,7 +26,23 @@ public class RetroError {
         return errorMessage;
     }
 
-    public RetrofitException.Kind getKind() {
+    public Kind getKind() {
         return kind;
+    }
+
+    public enum Kind {
+        /**
+         * An {@link IOException} occurred while communicating to the server.
+         */
+        NETWORK,
+        /**
+         * A non-200 HTTP status code was received from the server.
+         */
+        HTTP,
+        /**
+         * An internal error occurred while attempting to execute a request. It is best practice to
+         * re-throw this exception so your application crashes.
+         */
+        UNEXPECTED
     }
 }

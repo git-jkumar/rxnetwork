@@ -1,12 +1,12 @@
 package onsterlabs.network.rxnetwork;
 
-import onsterlabs.network.RetrofitException;
+import java.io.IOException;
 
+import retrofit2.Response;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
 public class APISubscriber<T> extends Subscriber<T> {
-    private T t;
-
     @Override
     public void onCompleted() {
         // TODO To be evaluated
@@ -14,7 +14,7 @@ public class APISubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable throwable) {
-        RXEventBus.getInstance().post(getDefaultError((RetrofitException) throwable));
+        RXEventBus.getInstance().post(getRetroError(throwable));
     }
 
     @Override
@@ -22,7 +22,16 @@ public class APISubscriber<T> extends Subscriber<T> {
         RXEventBus.getInstance().post(t);
     }
 
-    public RetroError getDefaultError(RetrofitException retrofitException){
-       return new RetroError(retrofitException.getKind(),retrofitException.getMessage(),retrofitException.getResponse().code());
+    public RetroError getRetroError(Throwable throwable){
+
+        if (throwable instanceof HttpException) {
+            HttpException httpException = (HttpException) throwable;
+            Response response = httpException.response();
+            return new RetroError(RetroError.Kind.HTTP, response.message(),response.code());
+        }
+
+        return throwable instanceof IOException?new RetroError(RetroError.Kind.NETWORK, throwable.getMessage(),-999): new RetroError(RetroError.Kind.UNEXPECTED, throwable.getMessage(), -999);
+
     }
+
 }
