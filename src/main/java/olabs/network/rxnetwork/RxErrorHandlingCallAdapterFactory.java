@@ -1,10 +1,10 @@
-package onsterlabs.network.rxnetwork;
+package olabs.network.rxnetwork;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
-import onsterlabs.network.RetrofitException;
+import olabs.network.RetrofitException;
 import retrofit2.Call;
 import retrofit2.CallAdapter;
 import retrofit2.Response;

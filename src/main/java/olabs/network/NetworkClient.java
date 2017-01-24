@@ -1,4 +1,4 @@
-package onsterlabs.network;
+package olabs.network;
 
 
 import com.google.gson.ExclusionStrategy;

@@ -1,4 +1,4 @@
-package onsterlabs.network;
+package olabs.network;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
