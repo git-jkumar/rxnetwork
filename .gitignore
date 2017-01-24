@@ -1,7 +1,5 @@
 .gradle
 /local.properties
-/.idea
+.idea
 /build
 *.iml
-*.log
-/app/app.iml

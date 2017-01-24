@@ -6,7 +6,7 @@ import retrofit2.Response;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
-public class APISubscriber<T> extends Subscriber<T> {
+class APISubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onCompleted() {
@@ -23,7 +23,7 @@ public class APISubscriber<T> extends Subscriber<T> {
         RXEventBus.getInstance().post(t);
     }
 
-    public RetroError getRetroError(Throwable throwable){
+    private RetroError getRetroError(Throwable throwable){
 
         if (throwable instanceof HttpException) {
             HttpException httpException = (HttpException) throwable;
