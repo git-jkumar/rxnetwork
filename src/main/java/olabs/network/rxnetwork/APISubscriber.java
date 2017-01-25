@@ -6,7 +6,7 @@ import retrofit2.Response;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
-class APISubscriber<T> extends Subscriber<T> {
+public class APISubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onCompleted() {
