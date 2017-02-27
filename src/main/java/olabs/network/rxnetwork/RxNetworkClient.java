@@ -1,4 +1,4 @@
-package olabs.network;
+package olabs.network.rxnetwork;
 
 
 import com.google.gson.ExclusionStrategy;
@@ -19,11 +19,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NetworkClient {
+public class RxNetworkClient {
 
-    private NetworkClient() {
+    private RxNetworkClient() {
     }
 
     public static Retrofit getRestAdapter(final String baseUrl, final HashMap<String, String> requestHeaderMap) {
@@ -84,13 +85,14 @@ public class NetworkClient {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
 
     private static final Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
         @Override
-        public Response intercept(Chain chain) throws IOException {
-            Response originalResponse = chain.proceed(chain.request());
+        public okhttp3.Response intercept(Chain chain) throws IOException {
+            okhttp3.Response originalResponse = chain.proceed(chain.request());
             int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
             return originalResponse.newBuilder()
                     .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)

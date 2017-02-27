@@ -1,34 +1,34 @@
-package olabs.network;
+package olabs.network.rxnetwork;
 
 import java.util.HashMap;
 
-import olabs.network.rxnetwork.RxNetworkClient;
+import olabs.network.TokenAuthenticator;
 import retrofit2.Retrofit;
 
 
-public class NetworkServiceFactory {
+public class RxNetworkServiceFactory {
 
-    private static NetworkServiceFactory sDataService;
+    private static RxNetworkServiceFactory sDataService;
     private Retrofit mRestClient;
     private TokenAuthenticator mTokenAuthenticator;
 
-    private NetworkServiceFactory() {
+    private RxNetworkServiceFactory() {
     }
 
-    private NetworkServiceFactory(Retrofit restClient) {
+    private RxNetworkServiceFactory(Retrofit restClient) {
         mRestClient = restClient;
     }
 
     public static <S> S getInstance(String baseUrl, Class<S> serviceClass,HashMap requestHeaderMap) {
         if (sDataService == null) {
-            sDataService = new NetworkServiceFactory(NetworkClient.getRestAdapter(baseUrl, requestHeaderMap));
+            sDataService = new RxNetworkServiceFactory(RxNetworkClient.getRestAdapter(baseUrl, requestHeaderMap));
         }
         return sDataService.getClient(serviceClass);
     }
 
     public static <S> S getNewInstance(String baseUrl, Class<S> serviceClass,HashMap requestHeaderMap) {
             sDataService = null;
-            sDataService = new NetworkServiceFactory(NetworkClient.getRestAdapter(baseUrl, requestHeaderMap));
+            sDataService = new RxNetworkServiceFactory(RxNetworkClient.getRestAdapter(baseUrl, requestHeaderMap));
 
         return sDataService.getClient(serviceClass);
     }
